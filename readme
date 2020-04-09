@@ -1,0 +1,11 @@
+maven:
+    - manage the jars needed for spring dev; 
+    - it automatically downloads the jar files
+    - add jars needed in pom.xml <dependency> tag
+    - command line use:
+        - mvn archetype:generate
+        - mvn compile
+tomcat:
+    java server for web development
+
+Spring MVC 
