@@ -5,7 +5,48 @@ maven:
     - command line use:
         - mvn archetype:generate
         - mvn compile
+
+spring:
+    - dependency injection
+    - bean scope
+        - by default, bean scope is singleton
+        - to change the scope, add attribute scope = "prototype"
+
+    - init and destroy method
+        - init-method="onCreate"
+        - destroy-method="onDestroy"
+        - can specify default init and destroy methods in <beans>,
+        but it will be overridden by the init/destroy method in <bean>
+
+    - factory method
+        - static method used in the bean itself
+        - non static method used with a factory bean
+
+    - pass in constructor a list
+        - <constructor-arg name = "">
+            <list>
+            <value> a </value>
+            <value> n </value>
+            </list>
+         </constructor-arg>
+    - manage a list of objects
+        <list>
+            <ref bean=""/>
+        </list>
+    - manage a map in property
+        <property  name="">
+            <props>
+                <prop key ="keyval"> "value"</prop>
+            </props>
+        </property>
+     more general:
+        <property  name="">
+            <map>
+                <entry key ="keyval" value:ref ="refbean"></>
+            </map>
+        </property>
 tomcat:
     java server for web development
+
 
 Spring MVC 
