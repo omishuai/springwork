@@ -105,6 +105,23 @@ spring:
             }
             this is the same as setting property value in xml
 
+
+
+
+
+
+
+
+
+
+==============================================================
+MySQL and Spring
+
+
+
+
+
+
 tomcat:
     java server for web development
 

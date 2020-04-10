@@ -7,6 +7,7 @@
 	   http://www.springframework.org/schema/beans/spring-beans.xsd
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context.xsd"
+
 	   default-init-method="init"
 >
 
@@ -50,8 +51,7 @@
 
 	<bean id ="store"
 		  class="com.shuaih.springTest.Store"
-		  scope="prototype"
-	>
+		  scope="prototype">
 		<constructor-arg name = "name"  value = "trader joe" ></constructor-arg>
 		<constructor-arg name = "products">
 			<list>
@@ -68,7 +68,16 @@
 		<constructor-arg name ="name" value ="nike"></constructor-arg>
 	</bean>
 
+
+	<bean id = "connector"
+		  class = "com.shuaih.springTest.Connector"
+	>
+		<property name="user" value = "${jdbc.user}"></property>
+		<property name="password" value ="${jdbc.password}"></property>
+
+	</bean>
 	<context:annotation-config></context:annotation-config>
 
+	<context:property-placeholder location = "jdbc.properties"/>
 
 </beans>

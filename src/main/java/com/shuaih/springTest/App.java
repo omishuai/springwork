@@ -20,11 +20,14 @@ public class App
 //
 //        System.out.println(p1);
 //        System.out.println(p2);
+//
+//        Store store = (Store) context.getBean("store");
+//        System.out.println(store);
+//        store.requestClient();
+//        store.requestSupplier();
 
-        Store store = (Store) context.getBean("store");
-        System.out.println(store);
-        store.requestClient();
-        store.requestSupplier();
+        Connector dbc = (Connector) context.getBean("connector");
+
         ((ClassPathXmlApplicationContext) context).close(); // ApplicationContext does not have close()
     }
 }
