@@ -117,8 +117,38 @@ spring:
 ==============================================================
 MySQL and Spring
 
+*JDBC
+*DBCP
 
+1.JdbcTemplate where no parameters is supplied
+2.NamedParameterJdbcTemplate (where value is passed in as parameters for safety):
+    namedParameters:
+        1.BeanPropertySQLParameterSource
+          the bean properties need to have getter and setter method
+        2.MapSqlParameterSource
 
+PreparedStatements (batch update)
+batchUpdate: update for each object in the list
+    we could loop through the object list, and create each bean for the object, and then update
+    but better way is to create batch parameters:
+        SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(objects.toArray());
+        // here the params is a list of param for each object which we will update
+        // both MapSqlParameterSource and BeanPropertySqlParameterSource implement SqlParameterSource
+        then we do batch update:
+        namedJdbc.batchUpdate("sql string here", params);
+
+transaction
+used in batch change queries: if one update fails, the the whole update query will fail; the previously succeeded
+tx namespace enables support for transaction management in Spring framework
+add tx namespace when using transaction
+
+	<bean id="jdbcTransactionManager"
+		  class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+transaction uses the transaction manager in spring jdbc which takes in the datasource created through connection initialziation
+adding tag @Transactional to make the method with transaction
 
 
 
