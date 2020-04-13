@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns ="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context ="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd"
+
+	   default-init-method="init"
+>
+
+	<bean id="personFactory"
+		  class="com.shuaih.springTest.PersonFactory"
+	></bean>
+
+	<!--specify the args for constructor -->
+	<bean id="person"
+		  class="com.shuaih.springTest.Person"
+		  scope="prototype"
+		  init-method="onCreate"
+		  factory-method="createPerson"
+		  factory-bean="personFactory"
+	>
+		<constructor-arg value="1" index="0" name="id" type="int"></constructor-arg>
+		<constructor-arg value="shuai" index="1" name="name"></constructor-arg>
+		<property name="taxId" value="2"></property>
+
+		<!--		Dependency Injection is a fundamental aspect of the Spring framework, through which the Spring-->
+		<!--		container "injects" objects into other objects or "dependencies". Simply put, -->
+		<!--		this allows for loose coupling of components and moves the responsibility of managing -->
+		<!--		components onto the container-->
+
+		<!--		using reference here to create a object this person depends on-->
+		<!--		"ref" is the id of address bean, and  "name" is the field name -->
+		<property name="street" ref="address"></property>
+
+	</bean>
+
+	<bean id="address"
+		  class="com.shuaih.springTest.Address"
+		  scope="prototype"
+
+	>
+		<constructor-arg value="94132" name="code" type="int"></constructor-arg>
+		<constructor-arg value="225 bright" name="str"></constructor-arg>
+	</bean>
+
+
+
+	<bean id ="store"
+		  class="com.shuaih.springTest.Store"
+		  scope="prototype">
+		<constructor-arg name = "name"  value = "trader joe" ></constructor-arg>
+		<constructor-arg name = "products">
+			<list>
+				<value>"chips"</value>
+				<value>"banana"</value>
+				<value>"oranges"</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id = "factory"
+		  class = "com.shuaih.springTest.Factory"
+	>
+		<constructor-arg name ="name" value ="nike"></constructor-arg>
+	</bean>
+
+
+	<bean id = "connector"
+		  class = "com.shuaih.springTest.Connector"
+	>
+<!--		<property name="user" value = "${jdbc.user}"></property>-->
+<!--		<property name="password" value ="${jdbc.password}"></property>-->
+
+	</bean>
+
+
+	<bean
+		id = "dataSource"
+		class = "org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value = "${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.user}"></property>
+
+	</bean>
+
+<!--	<bean-->
+<!--		id = "profile"-->
+<!--		class = "com.shuaih.springTest.Profile"-->
+<!--		scope = "prototype"-->
+<!--	></bean>-->
+
+	<context:annotation-config></context:annotation-config>
+
+	<context:property-placeholder location = "jdbc.properties"/>
+
+
+</beans>
