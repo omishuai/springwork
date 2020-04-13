@@ -1,0 +1,44 @@
+setting up basics with tomcat
+-> using maven tomcat plugin
+<plugin>
+    <groupId>org.apache.tomcat.maven</groupId>
+    <artifactId>tomcat7-maven-plugin</artifactId>
+    <version>2.2</version>
+</plugin>
+
+setting in run configuration, updating command to run tomcat
+
+
+springify the webapp
+Dispatcher Servelet -> go to Controller
+
+1. add dispatcher servlet
+    this will add a servlet to web.xml
+      <servlet>
+        <servlet-name>profiles</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      </servlet>
+      <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/DispatcherServlet</url-pattern>
+      </servlet-mapping>
+
+when running the webapp, it will first go to web.xml, and looks for the servlet (DispatcherServlet), and this needs to be
+predefined in the .xml file in WEB-INF (has to be named the same as servlet: profiles-servlet.xml,
+and load beans defined in the xml.
+
+problem: how to expose maven libraries to webapp (dispatcherServlet.class)?
+looks like intellij has it configured so that when running on tomcat, it can find maven libraries?
+
+
+2. add the controller
+    creates controllers package in the java src, and controller will return the name of
+    the view to present based on what type of request
+    example:
+
+        //returns the name and present it through the view
+        @RequestMapping("/")
+        public String showHome() {
+            return "index";
+        }
+3. add view
