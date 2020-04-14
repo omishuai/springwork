@@ -54,3 +54,8 @@ JSTL: JavaServer Pages Standard Tag Library
 
 JNDI connect to MySQL DBCP
 
+
+
+split xml file into different sub xmls that are responsible for different packages
+these xml files will reside in src/main/resources/
+servelet beans should be in WEB-INF however

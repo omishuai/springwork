@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 
 <sql:query var="rs" dataSource="jdbc/springwork">
 select * from profiles
@@ -14,8 +15,7 @@ select * from profiles
   <h2>Results</h2>
 
 <c:forEach var="row" items="${rs.rows}">
-    first name: ${row.first}<br/>
-    last name: ${row.last}<br/>
+    first name: ${row.firstName} last name: ${row.lastName}<br/>
 </c:forEach>
 
   </body>
