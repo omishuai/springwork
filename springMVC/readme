@@ -59,3 +59,17 @@ JNDI connect to MySQL DBCP
 split xml file into different sub xmls that are responsible for different packages
 these xml files will reside in src/main/resources/
 servelet beans should be in WEB-INF however
+
+
+
+
+
+
+service layer
+
+
+
+href = ""${pageContext.request.contextPath}/my/dir"
+that request will be sent to whatever controller that handles /my/dir
+
+

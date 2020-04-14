@@ -1,5 +1,6 @@
 package com.shuaih.spring.mvc.db;
 
+import com.shuaih.spring.mvc.service.ProfileService;
 import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ public class Connector {
 
     private JdbcTemplate jdbc;
     private NamedParameterJdbcTemplate namedJdbc;
+
 
     @Autowired  //setter method for jdbc (this is configured in db-beans.xml
     public void setDataSource(DataSource jdbc) {
@@ -97,7 +99,7 @@ public class Connector {
 //        return
 //    }
 
-    public void init(){
+    Connector(){
         System.out.println("Connector Created");
     }
 }
