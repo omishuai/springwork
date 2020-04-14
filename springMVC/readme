@@ -9,7 +9,6 @@ setting up basics with tomcat
 setting in run configuration, updating command to run tomcat
 
 
-springify the webapp
 Dispatcher Servelet -> go to Controller
 
 1. add dispatcher servlet
@@ -71,5 +70,8 @@ service layer
 
 href = ""${pageContext.request.contextPath}/my/dir"
 that request will be sent to whatever controller that handles /my/dir
+
+
+
 
 
