@@ -42,3 +42,15 @@ looks like intellij has it configured so that when running on tomcat, it can fin
             return "index";
         }
 3. add view
+
+work flow
+
+
+
+JSTL and JSP
+JSTL: JavaServer Pages Standard Tag Library
+    example: <c:out> this will stringify the whole input, <b>name</b>
+
+
+JNDI connect to MySQL DBCP
+
